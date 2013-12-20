@@ -22,7 +22,7 @@ can.Component.extend(
     },
     scope:
     {
-        items: new can.TransitionList()
+        items: new can.Transition.List()
     }
 });
 ```
