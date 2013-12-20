@@ -16,16 +16,17 @@ In situations where you used `can.List`, you would would now use `can.Transition
 ```javascript
 can.Component.extend(
 {
+    scope:
+    {
+        item:  new can.Transition.Map(),
+        items: new can.Transition.List()
+    },
+    
     init:
     {
         this.scope.item.attr("message", "asdf1");
         
         this.scope.items.push( {message:"asdf2"} );
-    },
-    scope:
-    {
-        item:  new can.Transition.Map(),
-        items: new can.Transition.List()
     }
 });
 ```
