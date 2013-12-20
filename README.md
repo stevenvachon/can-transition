@@ -10,7 +10,7 @@ There is no longer a need to litter your data-driven code with DOM stuff. You ca
 *Note*: While this plugin does use abstraction, it will only work with jQuery at this time. Zepto, MooTools and YUI versions of [jquery.transitionsend](https://github.com/stevenvachon/jquery.transitionsend/) may be written in the future.
 
 ## Usage
-In situations where you used `can.List`, you would would now use `can.Transition.List`. Similarly, in situations where you used `can.Map`, you would would now use `can.Transition.Map`. The syntaxes are the same, otherwise.
+In situations where you used `can.List`, you would now use `can.Transition.List`. Similarly, in situations where you used `can.Map`, you would would now use `can.Transition.Map`. The syntaxes are the same, otherwise.
 
 ### In a `can.Component`
 ```javascript
