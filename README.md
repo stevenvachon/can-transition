@@ -10,7 +10,7 @@ There is no longer a need to litter your data-driven code with DOM stuff. You ca
 *Note*: While this plugin does use abstraction, it will only work with jQuery at this time. Zepto, MooTools and YUI versions of [jquery.transitionsend](https://github.com/stevenvachon/jquery.transitionsend/) may be written in the future.
 
 ## Usage
-In situations where you used `can.List`, you would would now use `can.Transition.List`. The syntax is the same, otherwise.
+In situations where you used `can.List`, you would would now use `can.Transition.List`. Similarly, in situations where you used `can.Map`, you would would now use `can.Transition.Map`. The syntaxes are the same, otherwise.
 
 ### In a `can.Component`
 ```javascript
@@ -18,10 +18,13 @@ can.Component.extend(
 {
     init:
     {
-        this.scope.items.push( {message:"asdf"} );
+        this.scope.item.attr("message", "asdf1");
+        
+        this.scope.items.push( {message:"asdf2"} );
     },
     scope:
     {
+        item:  new can.Transition.Map(),
         items: new can.Transition.List()
     }
 });
@@ -30,8 +33,14 @@ can.Component.extend(
 ### Template(s)
 This plugin provides the `@transition.id` and `@transition.state` variables.
 ```html
+{{#with item}}
+    <div class="example some-flag {{@transition.state}}" data-transition-id="{{@transition.id}}">
+        {{message}}
+    </div>
+{{/with}}
+
 {{#each items}}
-    <div id="example" class="some-flag {{@transition.state}}" data-transition-id="{{@transition.id}}">
+    <div class="example {{@transition.state}}" data-transition-id="{{@transition.id}}">
         {{message}}
     </div>
 {{/each}}
@@ -40,11 +49,11 @@ This plugin provides the `@transition.id` and `@transition.state` variables.
 ### CSS
 This plugin relies on three classes. `transition-initial` represents the initial state of the element before `transition-intro`, which represents the introduction of the element. `transition-extro` represents the removal of the element. Each are cascaded; meaning that all three will be applied to the element during the extro state; so, be conscious of any properties that must be overridden.
 ```css
-#example {border:1px solid black}
-#example.some-flag {border-color:red}
-#example.transition-initial {opacity:0}
-#example.transition-intro   {opacity:1; transition:1s opacity}
-#example.transition-extro   {opacity:0; transition:.5s opacity}
+.example {border:1px solid black}
+.example.some-flag {border-color:red}
+.example.transition-initial {opacity:0}
+.example.transition-intro   {opacity:1; transition:1s opacity}
+.example.transition-extro   {opacity:0; transition:.5s opacity}
 ```
 
 ## FAQ
