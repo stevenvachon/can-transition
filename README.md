@@ -4,13 +4,13 @@
 ## Getting Started
 This plugin requires CanJS `~2.0.0`
 
-There is no longer a need to litter your data-driven code with DOM stuff. You can achieve animated interfaces with [**only your stylesheet(s)**](#css), and [**two *simple* template variables**](#templates). Continue using CanJS the way you have been, only now everything can be animated.
+It is no longer necessary to litter your data-driven code with DOM APIs just to achieve an animated interface. Continue using CanJS the way you have been and animate with [**only your stylesheet(s)**](#css) and [**two *simple* template variables**](#templates).
 
 - - -
-*Note*: While this plugin does use abstraction, it will only work with jQuery at this time. Zepto, MooTools and YUI versions of [jquery.transitionsend](https://github.com/stevenvachon/jquery.transitionsend/) may be written in the future.
+*Note*: While this plugin does use abstraction, it currently will only work with jQuery. Zepto, MooTools and YUI versions of [jquery.transitionsend](https://github.com/stevenvachon/jquery.transitionsend/) may be written in the future.
 
 ## Usage
-In situations where you used `can.List`, you would now use `can.Transition.List`. Similarly, in situations where you used `can.Map`, you would would now use `can.Transition.Map`. The syntaxes are the same, otherwise.
+In situations where you used `can.List`, you would now use `can.Transition.List`. Similarly, in situations where you used `can.Map`, you would now use `can.Transition.Map`. The syntaxes are the same, otherwise.
 
 ### In a `can.Component`
 ```javascript
