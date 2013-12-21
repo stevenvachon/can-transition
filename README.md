@@ -57,6 +57,15 @@ This plugin relies on three classes. `transition-initial` represents the initial
 .example.transition-extro   {opacity:0; transition:.5s opacity}
 ```
 
+### Conditions
+When necessary, you can use the `@transition.extro` attribute to check if an extro transition is in progress:
+```javascript
+if ( !map.attr("@transition.extro") )
+{
+    // do something here when extro transition is not playing
+}
+```
+
 ## FAQ
 1. **What happens if I do not define the `transition-*` CSS classes?**  
 Everything will occur immediately, just as if you weren't using the plugin at all.
