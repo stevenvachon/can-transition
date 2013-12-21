@@ -22,7 +22,7 @@ can.Component.extend(
         items: new can.Transition.List()
     },
     
-    init:
+    init: function()
     {
         this.scope.item.attr("message", "asdf1");
         
