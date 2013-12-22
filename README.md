@@ -27,6 +27,14 @@ can.Component.extend(
         this.scope.item.attr("message", "asdf1");
         
         this.scope.items.push( {message:"asdf2"} );
+    },
+    
+    events:
+    {
+        ".example click": function()
+        {
+            this.scope.items.shift();
+        }
     }
 });
 ```
