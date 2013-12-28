@@ -47,14 +47,14 @@ This plugin relies on three classes. `transition-initial` represents the initial
 ```
 
 ### Conditions
-When necessary, you can use the CSS class names to check if an extro transition is in progress. This will not work with initial or intro states, however, because all classes are cascaded (more [above](#css)).
+When necessary, you can use the CSS class names to check the transition state of an element. There is currently no way to check if the intro state has completed its transition.
 ```javascript
 if ( element.className.indexOf("transition-extro") < 0 )
 {
     // do something here when extro transition is not playing
 }
 
-// or
+// or with jQuery:
 
 if ( !$(selector).hasClass("transition-extro") )
 {
