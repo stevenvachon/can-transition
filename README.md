@@ -1,5 +1,5 @@
 #can.transition
-> Seamlessly integrate CSS transitions into your [CanJS](https://github.com/bitovi/canjs/) projects.
+> *Seamlessly* integrate CSS transitions into your [CanJS](https://github.com/bitovi/canjs/) projects.
 
 ## Getting Started
 This plugin requires CanJS `~2.0.0`
