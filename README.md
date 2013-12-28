@@ -4,7 +4,7 @@
 ## Getting Started
 This plugin requires CanJS `~2.0.0`
 
-It is no longer necessary to litter your data-driven code with DOM APIs just to achieve an animated interface. Continue using CanJS the way you have been and animate with [**only your stylesheet(s)**](#css) and [**one *simple* template attribute**](#templates).
+It is no longer necessary to litter your data-driven code with DOM APIs to achieve an animated interface. Continue using CanJS the way you have been and animate with [**only your stylesheet(s)**](#css) and [**one *simple* template attribute**](#templates).
 
 - - -
 *Note*: While this plugin does use abstraction, its dependent library, [jquery.transitionsend](https://github.com/stevenvachon/jquery.transitionsend/) currently only works with jQuery. Zepto, MooTools, Dojo and YUI versions may be written in the future.
