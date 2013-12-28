@@ -17,18 +17,18 @@ You will not have to do anything more than include the plugin in your project. T
 ### Template(s)
 This plugin provides the `can-transition` attribute.
 ```html
-{{#each items}}
-    <div class="example {{#if flag}}some-flag{{/if}}" can-transition="true">
+{{#if message}}
+    <div class="example" can-transition="true">
         {{message}}
     </div>
-{{/each}}
+{{/if}}
 
 
 {{#if items.length}}
     <!-- div container will wait for children to finish transitioning -->
     <div>
         {{#each items}}
-            <div class="example" can-transition="true">
+            <div class="example {{#if flag}}some-flag{{/if}}" can-transition="true">
                 {{message}}
             </div>
         {{/each}}
