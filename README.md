@@ -12,7 +12,7 @@ It is no longer necessary to litter your data-driven code with DOM APIs just to 
 ## Usage
 
 ### JavaScript
-You will not have to do anything more than include the plugin in your project. The transitions are automatic and seamless in this regard.
+You will not have to do anything more than include the plugin in your project. The transition logic is automatic and seamless.
 
 ### Template(s)
 This plugin provides the `can-transition` attribute.
