@@ -54,6 +54,7 @@ if ( element.className.indexOf("transition-extro") < 0 )
     // do something here when extro transition is not playing
 }
 
+
 // or with jQuery:
 
 if ( !$(selector).hasClass("transition-extro") )
