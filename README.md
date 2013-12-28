@@ -4,55 +4,43 @@
 ## Getting Started
 This plugin requires CanJS `~2.0.0`
 
-It is no longer necessary to litter your data-driven code with DOM APIs just to achieve an animated interface. Continue using CanJS the way you have been and animate with [**only your stylesheet(s)**](#css) and [**two *simple* template variables**](#templates).
+It is no longer necessary to litter your data-driven code with DOM APIs just to achieve an animated interface. Continue using CanJS the way you have been and animate with [**only your stylesheet(s)**](#css) and [**one *simple* template attribute**](#templates).
 
 - - -
 *Note*: While this plugin does use abstraction, it currently will only work with jQuery. Zepto, MooTools, Dojo and YUI versions of [jquery.transitionsend](https://github.com/stevenvachon/jquery.transitionsend/) may be written in the future.
 
 ## Usage
-In situations where you used `can.List`, you would now use `can.Transition.List`. Similarly, in situations where you used `can.Map`, you would now use `can.Transition.Map`. The syntaxes are the same, otherwise.
 
-### In a `can.Component`
-```javascript
-can.Component.extend(
-{
-    scope:
-    {
-        item:  new can.Transition.Map(),
-        items: new can.Transition.List()
-    },
-    
-    init: function()
-    {
-        this.scope.item.attr("message", "asdf1");
-        
-        this.scope.items.push( {message:"asdf2"} );
-    },
-    
-    events:
-    {
-        ".example click": function()
-        {
-            this.scope.items.shift();
-        }
-    }
-});
-```
+### JavaScript
+You will not have to do anything more than include the plugin in your project. The transitions are automatic and seamless in this regard.
 
 ### Template(s)
-This plugin provides the `@transition.id` and `@transition.state` variables.
+This plugin provides the `can-transition` attribute.
 ```html
-{{#with item}}
-    <div class="example some-flag {{@transition.state}}" data-transition-id="{{@transition.id}}">
+{{#if item}}
+    <div class="example some-flag" can-transition="true">
         {{message}}
     </div>
-{{/with}}
+{{/if}}
+
 
 {{#each items}}
-    <div class="example {{@transition.state}}" data-transition-id="{{@transition.id}}">
+    <div class="example" can-transition="true">
         {{message}}
     </div>
 {{/each}}
+
+
+{{#if items.length}}
+    <!-- div container will wait for children to finish transitioning -->
+    <div>
+        {{#each items}}
+            <div class="example" can-transition="true">
+                {{message}}
+            </div>
+        {{/each}}
+    </div>
+{{/if}}
 ```
 
 ### CSS
@@ -66,11 +54,18 @@ This plugin relies on three classes. `transition-initial` represents the initial
 ```
 
 ### Conditions
-When necessary, you can use the `@transition.extro` attribute to check if an extro transition is in progress:
+When necessary, you can use the CSS class names to check if an extro transition is in progress. This will not work with initial or intro states, however, because all classes are cascaded (more [above](#css)).
 ```javascript
-if ( !map.attr("@transition.extro") )
+if ( element.className.indexOf("transition-extro") < 0 )
 {
     // do something here when extro transition is not playing
+}
+
+// or
+
+if ( !$(selector).hasClass("transition-extro") )
+{
+    // ditto
 }
 ```
 
