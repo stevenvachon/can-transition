@@ -18,7 +18,7 @@ You will not have to do anything more than include the plugin in your project. T
 This plugin provides the `can-transition` attribute.
 ```html
 {{#each items}}
-    <div class="example" can-transition="true">
+    <div class="example {{#if flag}}some-flag{{/if}}" can-transition="true">
         {{message}}
     </div>
 {{/each}}
