@@ -22,13 +22,13 @@ define(["can/util/library", "can/view/scanner"], function(can)
 	
 	can.reflow = function(nodeList)
 	{
-		if (jQuery)
+		if (window.jQuery || window.Zepto)
 		{
 			nodeList.reflow();
 		}
 		else
 		{
-			// "transitionsend" plugin is currently jQuery-only
+			// "transitionsend" plugin is currently jQuery/Zepto-only
 		}
 	}
 	
