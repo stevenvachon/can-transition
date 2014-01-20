@@ -1,0 +1,189 @@
+<article>
+	<h1>Tables</h1>
+	
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th><input type="checkbox" can-value="allSelected"/></th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="4">
+					{{#if items.length}}
+						<small>{{numSelected}} selected.</small>
+					{{else}}
+						<small>No data to display.</small>
+					{{/if}}
+				</td>
+			</tr>
+		</tfoot>
+		<tbody>
+			{{#each items}}
+				<tr can-transition="true" class="{{#if selected}}active{{/if}}">
+					<td><input type="checkbox" can-value="selected"/></td>
+					<td>{{title}}</td>
+					<td>{{description}}</td>
+					<td><time datetime="{{date-format date 'iso'}}" title="{{date-format date 'dddd, MMMM D, YYYY'}}">{{date-format date 'MM/DD/YYYY'}}</time></td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	
+	<button class="btn btn-danger" can-click="remove">Remove Selected Data</button>
+	<button class="btn" can-click="add">Add Some Data</button>
+	
+	<hr/>
+	
+	<section>
+		<h1>JavaScript</h1>
+		<pre class="pre-scrollable">can.Component.extend({
+	tag: "table-example",
+	template: can.view("components/table-example/table-example"),
+	init: function() {
+		this.scope.add();
+		this.scope.add();
+		this.scope.add();
+	},
+	scope: {
+		items: [],
+		
+		add: function() {
+			can.batch.start();
+			for (var i=1; i<=2; i++) {
+				this.items.push({
+					title: "This Is A Title",
+					description: "This is a description that describes stuff. Usually, it'd be interesting, but this is not.",
+					date: new Date().getTime(),
+					selected: false
+				});
+			}
+			can.batch.stop();
+		},
+		
+		allSelected: can.compute( function(newVal, oldVal) {
+			if (newVal !== undefined) {
+				can.batch.start();
+				this.items.forEach( function(element, index, list) {
+					element.attr("selected", newVal);
+				});
+				can.batch.stop();
+			} else {
+				return (this.numSelected() == this.items.length && this.items.length>0);
+			}
+		}),
+		
+		numSelected: can.compute( function() {
+			var count = 0;
+			
+			this.items.forEach( function(element, index, list) {
+				if (element.attr("selected")) count++;
+			});
+			
+			return count;
+		}),
+		
+		remove: function() {
+			can.batch.start();
+			for (var i=this.items.length-1; i>=0; i--) {
+				if (this.items[i].attr("selected")) {
+					this.items.splice(i, 1);
+				}
+			}
+			can.batch.stop();
+		}
+	},
+	helpers: {
+		// &lbrace;&lbrace;date-format 'unix offset, date string or timestamp' 'mm-dd-yy'}}
+		"date-format": function(time, format) {
+			if (can.isFunction(time)) time = time();
+			time = moment(time);
+			return (format == "iso") ? time.toISOString() : time.format(format);
+		}
+	}
+});</pre>
+	</section>
+	
+	<section>
+		<h1><abbr>LESS</abbr></h1>
+		<pre class="pre-scrollable">table-example {
+	display: block;
+	
+	>article > table > tbody > tr {
+		&.transition-initial {
+			opacity: 0;
+		}
+		
+		&.transition-intro {
+			opacity: 1;
+			.transition(opacity 1s);
+		}
+		
+		&.transition-extro {
+			opacity: 0;
+			.transition(opacity 0s 1s);	/* just to delay event for descendant transitions */
+			
+			& > td,
+			& > th {
+				border-width: 1px;	/* in case it's larger */
+				font-size: 0;
+				line-height: 0;
+				opacity: 0;
+				padding: 0;
+				.transition(opacity .5s,     border-width .5s .5s, font-size .5s .5s, line-height .5s .5s, padding .5s .5s;);
+				
+				& * {
+					border-width: 0;
+					height: 0;
+					margin: 0;
+					padding: 0;
+					.transition(border-width .1s .4s, height .5s .5s, margin .5s .5s, padding .5s .5s;);
+				}
+			}
+		}
+	}
+}</pre>
+	</section>
+	
+	<section>
+		<h1><abbr>HTML</abbr> <small>(Mustache/Handlebars)</small></h1>
+		<pre class="pre-scrollable">&lt;table class=&quot;table table-hover&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;input type=&quot;checkbox&quot; can-value=&quot;allSelected&quot;/&gt;&lt;/th&gt;
+			&lt;th&gt;Title&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Date&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tfoot&gt;
+		&lt;tr&gt;
+			&lt;td colspan=&quot;4&quot;&gt;
+				&lbrace;&lbrace;#if items.length}}
+					&lt;small&gt;&lbrace;&lbrace;numSelected}} selected.&lt;/small&gt;
+				&lbrace;&lbrace;else}}
+					&lt;small&gt;No data to display.&lt;/small&gt;
+				&lbrace;&lbrace;/if}}
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tfoot&gt;
+	&lt;tbody&gt;
+		&lbrace;&lbrace;#each items}}
+			&lt;tr can-transition=&quot;true&quot; class=&quot;&lbrace;&lbrace;#if selected}}active&lbrace;&lbrace;/if}}&quot;&gt;
+				&lt;td&gt;&lt;input type=&quot;checkbox&quot; can-value=&quot;selected&quot;/&gt;&lt;/td&gt;
+				&lt;td&gt;&lbrace;&lbrace;title}}&lt;/td&gt;
+				&lt;td&gt;&lbrace;&lbrace;description}}&lt;/td&gt;
+				&lt;td&gt;&lt;time datetime=&quot;&lbrace;&lbrace;date-format date &#039;iso&#039;}}&quot; title=&quot;&lbrace;&lbrace;date-format date &#039;dddd, MMMM D, YYYY&#039;}}&quot;&gt;&lbrace;&lbrace;date-format date &#039;MM/DD/YYYY&#039;}}&lt;/time&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lbrace;&lbrace;/each}}
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;button class=&quot;btn btn-danger&quot; can-click=&quot;remove&quot;&gt;Remove Selected Data&lt;/button&gt;
+&lt;button class=&quot;btn&quot; can-click=&quot;add&quot;&gt;Add Some Data&lt;/button&gt;</pre>
+	</section>
+	
+</article>

@@ -1,0 +1,23 @@
+{
+  "name": "can-transition Example(s)",
+  "description": "Seamless CSS transitions for CanJS",
+  "version": "0.1.0",
+  "homepage": "https://github.com/stevenvachon/can-transition/tree/gh-pages/",
+  "author": {
+    "name": "Steven Vachon",
+    "email": "contact@svachon.com",
+    "url": "http://www.svachon.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stevenvachon/can-transition.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stevenvachon/can-transition/issues"
+  },
+  "config": {
+    "appRoot": "./",
+    "generateSourceMaps": false,
+    "sourceMapRoot": "/src/"
+  }
+}

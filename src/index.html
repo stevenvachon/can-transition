@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>can-boilerplate (dev environment)</title>
+		<meta name="description" content="This file is not included in the production build."/>
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	</head>
+	<body>
+		<header>
+			<h1>{{title}}</h1>
+			<p>This is a demo page for <a href="https://github.com/stevenvachon/can-transition/">can-transition</a>.</p>
+		</header>
+		
+		<div class="preloader">
+			<noscript>
+				Due to the nature of this page,
+				<strong>JavaScript must be enabled in order to continue.</strong>
+			</noscript>
+		</div>
+		
+		<data id="appRoot" value="/src/"></data>
+		
+		<script>
+		var preloader = setTimeout(function()
+		{
+			document.querySelector(".preloader").innerHTML = "Loading…";
+		}, 4000);
+		
+		var appRoot = document.querySelector("#appRoot").getAttribute("value");
+		
+		var less = {
+			relativeUrls: false,
+			rootpath: appRoot
+		};
+		
+		function require_dev(d,e){function f(){if(++g<d.length)a:{var c=j+d[g],h=function(){f()},a=c.match(/\.([0-9a-z]+)(?:[\?#]|$)/i),b;if(a){a=a[1];switch(a){case "css":case "less":b=document.createElement("link");b.setAttribute("rel","stylesheet/"+a);b.setAttribute("href",c);a=document.createElement("img");a.onerror=function(){h.apply(b);delete this.onerror};a.src=c;break;case "js":b=document.createElement("script");b.setAttribute("src",c);b.onload=function(){h.apply(this);delete this.onload};break;default:console.error('Unsupported file extension "'+
+		a+'": '+c);break a}document.body.appendChild(b)}else console.error("Missing file extension: "+c)}else e&&e()}var j=appRoot,g=-1;f()};
+		
+		require_dev(["init.less","assets/js/less-1.5.1.js","assets/js/require.js"], function()
+		{
+			define("templates", function(){});
+			require.config({baseUrl:appRoot});
+			require_dev(["init.js"]);
+		});
+		</script>
+	</body>
+</html>

@@ -1,4 +1,4 @@
-define(["can/util/library", "can/view/scanner"], function(can)
+define(["can/util/library", "can/view/scanner", "jquerypp/event/pause", "jquery.transitionsend"], function(can)
 {
 	var appendChild_super = can.appendChild;
 	var insertBefore_super = can.insertBefore;

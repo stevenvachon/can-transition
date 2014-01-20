@@ -1,0 +1,59 @@
+table-example
+{
+	display: block;
+	
+	
+	
+	>article > table
+	{
+		>tbody > tr
+		{
+			&.transition-initial
+			{
+				opacity: 0;
+			}
+			
+			&.transition-intro
+			{
+				opacity: 1;
+				.transition(opacity 1s);
+			}
+			
+			&.transition-extro
+			{
+				opacity: 0;
+				.transition(opacity 0s 1s);	/* just to delay event for descendant transitions */
+				
+				& > td,
+				& > th
+				{
+					border-width: 1px;	/* in case it's larger */
+					font-size: 0;
+					line-height: 0;
+					opacity: 0;
+					padding: 0;
+					.transition(opacity .5s,     border-width .5s .5s, font-size .5s .5s, line-height .5s .5s, padding .5s .5s;);
+					
+					& *
+					{
+						border-width: 0;
+						height: 0;
+						margin: 0;
+						padding: 0;
+						.transition(border-width .1s .4s, height .5s .5s, margin .5s .5s, padding .5s .5s;);
+					}
+				}
+			}
+		}
+		
+		
+		
+		>thead > tr > th
+		{
+			&:nth-child(1){ width:1%; }
+			&:nth-child(2){ width:25%; }
+			&:nth-child(3){ width:64%; }
+			&:nth-child(4){ width:10%; }
+		}
+	}
+}
