@@ -25,10 +25,10 @@ This plugin provides the `can-transition` attribute.
 
 
 {{#if items.length}}
-    <!-- div container will wait for children to finish transitioning -->
+    <!-- div container will wait for children to finish transitioning. -->
     <div>
         {{#each items}}
-            <div class="example {{#if flag}}some-flag{{/if}}" can-transition="true">
+            <div class="example" can-transition="true">
                 {{message}}
             </div>
         {{/each}}
@@ -40,7 +40,6 @@ This plugin provides the `can-transition` attribute.
 This plugin relies on three classes. `transition-initial` represents the initial state of the element before `transition-intro`, which represents the introduction of the element. `transition-extro` represents the removal of the element. Each are cascaded; meaning that all three will be applied to the element during the extro state; so, be conscious of any properties that must be overridden.
 ```css
 .example {border:1px solid black}
-.example.some-flag {border-color:red}
 .example.transition-initial {opacity:0}
 .example.transition-intro   {opacity:1; transition:1s opacity}
 .example.transition-extro   {opacity:0; transition:.5s opacity}
@@ -63,6 +62,18 @@ if ( !$(selector).hasClass("transition-extro") )
 }
 ```
 
+## Current Shortcomings
+Transitioning elements with `can-transition="true"` will not "come back". When value fluctuation occurs, duplicates will be visible until transitions are completed. This applies to `{{#if}}`/`{{else}}` and `{{#unless}}`. This should be fixed in the next release.
+```html
+{{#unless items.length}}
+    <!--
+        Existing p will NOT animate back in if items.length fluctuates
+        from 0 to 1+ to 0. It will create a second p.
+    -->
+    <p can-transition="true">No items.</p>
+{{/unless}}
+```
+
 ## FAQ
 1. **What happens if I do not define the `transition-*` CSS classes?**  
 Everything will occur immediately, just as if you weren't using the plugin at all.
@@ -74,4 +85,4 @@ See #1.
 You are probably using [`{{#key}}`](http://canjs.com/docs/can.Mustache.helpers.section.html) when you should be using [`{{#each key}}`](http://canjs.com/docs/can.Mustache.helpers.each.html). They are treated differently in CanJS.
 
 ## Release History
-* *(Nothing yet)*
+* 0.1–0.3 pre-releases
