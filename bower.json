@@ -1,0 +1,33 @@
+{
+  "name": "can-transition",
+  "version": "0.3.1",
+  "homepage": "https://github.com/stevenvachon/can-transition",
+  "authors": [
+    "Steven Vachon <contact@svachon.com>"
+  ],
+  "description": "Seamlessly integrate CSS transitions into your CanJS projects",
+  "main": "can.transition.js",
+  "dependencies": {
+    "jquery.transitionsend" : "latest",
+    "jquerypp" : "latest"
+  },
+  "keywords": [
+    "transition",
+    "animation",
+    "canjs",
+    "can",
+    "css",
+    "jquery",
+    "requirejs",
+    "amd",
+    "zepto"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

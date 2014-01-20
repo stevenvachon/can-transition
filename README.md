@@ -67,8 +67,8 @@ Transitioning elements with `can-transition="true"` will not "come back". When v
 ```html
 {{#unless items.length}}
     <!--
-        Existing p will NOT animate back in if items.length fluctuates
-        from 0 to 1+ to 0. It will create a second p.
+        Existing <p> will NOT animate back in if items.length fluctuates
+        from 1 to 0 to 1. It will create a second <p>.
     -->
     <p can-transition="true">No items.</p>
 {{/unless}}
@@ -85,4 +85,4 @@ See #1.
 You are probably using [`{{#key}}`](http://canjs.com/docs/can.Mustache.helpers.section.html) when you should be using [`{{#each key}}`](http://canjs.com/docs/can.Mustache.helpers.each.html). They are treated differently in CanJS.
 
 ## Release History
-* 0.1–0.3 pre-releases
+* 0.1–0.3.1 pre-releases
