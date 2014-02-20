@@ -65,13 +65,13 @@ if ( !$(selector).hasClass("transition-extro") )
 ## Current Shortcomings
 Transitioning elements with `can-transition="true"` will not "come back". When value fluctuation occurs, duplicates will be visible until transitions are completed. This applies to `{{#if}}`/`{{else}}` and `{{#unless}}`. This should be fixed in the next release.
 ```html
-{{#unless items.length}}
+{{#if items.length}}
     <!--
         Existing <p> will NOT animate back in if items.length fluctuates
         from 1 to 0 to 1. It will create a second <p>.
     -->
-    <p can-transition="true">No items.</p>
-{{/unless}}
+    <p can-transition="true">Has items.</p>
+{{/if}}
 ```
 
 ## FAQ
@@ -86,3 +86,7 @@ You are probably using [`{{#key}}`](http://canjs.com/docs/can.Mustache.helpers.s
 
 ## Release History
 * 0.1–0.3.1 pre-releases
+
+---
+
+[![Analytics](https://ga-beacon.appspot.com/UA-3614308-5/stevenvachon/can-transition)](https://github.com/igrigorik/ga-beacon "Google Analytics") [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/stevenvachon/can-transition/trend.png)](https://bitdeli.com/free)
