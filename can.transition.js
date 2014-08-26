@@ -191,8 +191,16 @@ define(["can/util/library", "can/view/scanner", "jquerypp/event/pause", "jquery.
 	
 	
 	
+	// CanJS v2.0.x support
+	if (!can.view.attr && can.view.Scanner.attribute)
+	{
+		can.view.attr = can.view.Scanner.attribute;
+	}
+	
+	
+	
 	// Add "initial" and "intro" CSS classes
-	can.view.Scanner.attribute("can-transition", function(data, element)
+	can.view.attr("can-transition", function(data, element)
 	{
 		if (element.getAttribute(data.attr) == "true")
 		{

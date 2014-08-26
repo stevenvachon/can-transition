@@ -2,7 +2,7 @@
 > *Seamlessly* integrate CSS transitions into your [CanJS](https://github.com/bitovi/canjs/) projects.
 
 ## Getting Started
-This plugin requires CanJS `~2.0.0`
+This plugin requires CanJS `^2.0.0`
 
 It is no longer necessary to litter your data-driven code with DOM APIs to achieve an animated interface. Continue using CanJS the way you have been and animate with [**only your stylesheet(s)**](#css) and [**one *simple* template attribute**](#templates).
 
@@ -85,6 +85,7 @@ See #1.
 You are probably using [`{{#key}}`](http://canjs.com/docs/can.Mustache.helpers.section.html) when you should be using [`{{#each key}}`](http://canjs.com/docs/can.Mustache.helpers.each.html). They are treated differently in CanJS.
 
 ## Release History
+* 0.3.2 added CanJS v2.1.x support
 * 0.1–0.3.1 pre-releases
 
 ---
